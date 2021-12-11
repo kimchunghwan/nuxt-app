@@ -35,7 +35,56 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
   ],
+  router: {
+    middleware: ['auth']
+  },
+  auth: {
+    redirect: {
+      login: '/login',
+      logout: '/login',
+      callback: '/oauth2_callback',
+      home: '/'
+    },
+    strategies: {
+      google: {
+        clientId: "838126075532-sgd74rpvdu44qd50ad9d0kjfhb2vh8ik.apps.googleusercontent.com",
+        codeChallengeMethod: '',
+        // cookie: true,
+        // token: {
+        //   property: 'access_token',
+        //   type: 'Bearer',
+        //   maxAge: 1800
+        // },
+        // refreshToken: {
+        //   property: 'refresh_token',
+        //   maxAge: 60 * 60 * 24 * 30
+        // },
+        // responseType: 'token',
+      },
+      // google2: {
+      //   _scheme: 'oauth2',
+      //   authorization_endpoint: 'https://accounts.google.com/o/oauth2/auth',
+      //   userinfo_endpoint: `https://www.googleapis.com/oauth2/v3/userinfo`,
+      //   scope: [
+      //     'email',
+      //     'profile',
+      //     'openid',
+      //     'https://www.googleapis.com/auth/drive.metadata.readonly'
+      //   ],
+      //   access_type: undefined,
+      //   access_token_endpoint: undefined,
+      //   response_type: 'token',
+      //   token_type: 'Bearer',
+      //   clientId: '838126075532-sgd74rpvdu44qd50ad9d0kjfhb2vh8ik.apps.googleusercontent.com', // .envで定義しておく
+      //   token_key: 'access_token',
+      //   codeChallengeMethod: '',
+      //   messageType: ''
+      // }
+    }
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
